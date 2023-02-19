@@ -6,6 +6,6 @@
 #my-image {
   position: absolute;
   animation-name: move;
-  anination-duration: 5s;
+  animation-duration: 5s;
   animation-iteration-count: infinte;
 }

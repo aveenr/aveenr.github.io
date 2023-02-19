@@ -1,0 +1,11 @@
+@keyframes move {
+  from {left: 0px;}
+  to {left: 1000px;}
+}
+
+#my-image {
+  position: absolute;
+  animation-name: move;
+  anination-duration: 5s;
+  animation-iteration-count: infinte;
+}

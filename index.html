@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Github Test</title>
-</head>
-<body>
-	<p>It works on Github</p>
-</body>
+  <head>
+    <title>Image Sounds</title>
+  </head>
+  <body>
+    <img src="https://via.placeholder.com/100" usemap="#soundMap" />
+    <map name="soundMap">
+      <area shape="rect" coords="0,0,50,50" onclick="playSound('https://static.wikia.nocookie.net/dota2_gamepedia/images/f/f8/Vo_abaddon_abad_deny_06.mp3/revision/latest?cb=20201004184035.mp3')" />
+      <area shape="rect" coords="50,0,100,50" onclick="playSound('https://static.wikia.nocookie.net/dota2_gamepedia/images/a/a9/Vo_brewmaster_brew_respawn_01.mp3/revision/latest?cb=20201010182922.mp3')" />
+      <area shape="rect" coords="0,50,50,100" onclick="playSound('https://static.wikia.nocookie.net/dota2_gamepedia/images/d/d4/Plus_Hero_Badge_4.png/revision/latest/scale-to-width-down/24?cb=20180313043053.mp3')" />
+      <area shape="rect" coords="50,50,100,100" onclick="playSound('https://static.wikia.nocookie.net/dota2_gamepedia/images/2/26/Vo_arc_warden_arcwar_deny_10.mp3/revision/latest?cb=20201009173226.mp3')" />
+    </map>
+    <script>
+      function playSound(soundFile) {
+        const sound = new Audio("assets/" + soundFile);
+        sound.play();
+      }
+    </script>
+  </body>
 </html>

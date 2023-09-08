@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ushaka Autocomplete</title>
+    <link rel="stylesheet" href="styles2.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+
+    <script>
+      if ('serviceWorker' in navigator) {
+          navigator.serviceWorker
+            .register('service-worker.js')
+            .then((registration) => {
+              console.log('Service Worker Registered:', registration);
+            })
+            .catch((error) => {
+              console.error('Service Worker Registration Failed:', error);
+            });
+        } else {
+          console.error('Service Worker is not supported in this browser.');
+        }
+
+    </script>
+
+</head>
+<body>
+    <h1>Cheat sheet</h1>
+    
+    <div class="autocomplete-container">
+        <div class="autocomplete">
+            <input type="text" id="searchInput" placeholder="Search for species...">
+            <div id="autocompleteDropdown"></div>
+        </div>
+    </div>
+
+    <div id="dataDisplay">
+        <h2 id="selectedTerm">Term</h2>
+        <p id="dataContent"></p>
+        <p><span id="lifespan">Lifespan: </span></p>
+        <p><span id="habitat">Habitat: </span></p>
+        <p><span id="classification">>Classification: </span></p>
+    </div>
+
+    <script>
+        // JSON data with additional fields
+        // Define a function to load JSON data
+        function loadData() {
+          fetch('data.json') // Replace 'data.json' with the correct path to your JSON file
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.json();
+            })
+            .then(data => {
+              // Once data is loaded successfully, you can work with it
+              jsonData = data; // Assuming you have a global variable jsonData to store the data
+              console.log('Data loaded successfully:', jsonData);
+            })
+            .catch(error => {
+              console.error('Error loading data:', error);
+            });
+        }
+
+        // Call the loadData function to load the JSON data
+        loadData();
+
+
+        const input = document.getElementById("searchInput");
+        const dropdown = document.getElementById("autocompleteDropdown");
+        const dataDisplay = document.getElementById("dataDisplay");
+        const dataContent = document.getElementById("dataContent");
+        const selectedTerm = document.getElementById("selectedTerm");
+        const lifespan = document.getElementById("lifespan");
+        const habitat = document.getElementById("habitat");
+        const classification = document.getElementById("classification");
+        let selectedIndex = -1;
+
+        input.addEventListener("input", autocomplete);
+
+        input.addEventListener("keydown", function(e) {
+            if (e.key === "ArrowDown") {
+                e.preventDefault(); // Prevent scrolling of the page
+                moveSelection(1);
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault(); // Prevent scrolling of the page
+                moveSelection(-1);
+            } else if (e.key === "Enter" && selectedIndex !== -1) {
+                e.preventDefault(); // Prevent form submission
+                const term = dropdown.children[selectedIndex].textContent;
+                input.value = term;
+                dropdown.style.display = "none";
+                selectedTerm.textContent = term; // Update the selected term
+                displayData(getDataForTerm(term));
+            }
+        });
+
+        function getDataForTerm(term) {
+            return jsonData.find(item => item.term === term);
+        }
+
+        function moveSelection(step) {
+            const items = Array.from(dropdown.children);
+
+            if (items.length === 0) return;
+
+            if (selectedIndex === -1 && step === -1) {
+                selectedIndex = items.length - 1;
+            } else {
+                selectedIndex = (selectedIndex + step + items.length) % items.length;
+            }
+
+            updateSelected();
+        }
+
+        function updateSelected() {
+            const items = Array.from(dropdown.children);
+
+            items.forEach((item, index) => {
+                if (index === selectedIndex) {
+                    item.classList.add("selected");
+                } else {
+                    item.classList.remove("selected");
+                }
+            });
+        }
+
+        function autocomplete() {
+            const query = input.value.toLowerCase().trim();
+            dropdown.innerHTML = "";
+
+            if (query.length === 0) {
+                dropdown.style.display = "none";
+                // dataDisplay.style.display = "none";
+                dataDisplay.classList.remove("show"); // Remove the 'show' class to hide the section
+                return;
+            }
+
+            const suggestions = jsonData.filter(item => item.term.toLowerCase().includes(query));
+
+            if (suggestions.length === 0) {
+                dropdown.style.display = "none";
+                dataDisplay.style.display = "none";
+                return;
+            }
+
+            suggestions.forEach((suggestion, index) => {
+                const item = document.createElement("div");
+                item.className = "autocomplete-item";
+                item.textContent = suggestion.term;
+                item.addEventListener("click", () => {
+                    input.value = suggestion.term;
+                    dropdown.style.display = "none";
+                    selectedTerm.textContent = suggestion.term; // Update the selected term
+                    displayData(suggestion);
+                });
+                dropdown.appendChild(item);
+            });
+
+            dropdown.style.display = "block";
+            selectedIndex = -1;
+        }
+
+
+        function displayData(data) {
+            selectedTerm.textContent = data.term; // Update the selected term
+            dataContent.textContent = data.definition;
+            lifespan.textContent = data.lifespan;
+            habitat.textContent = data.habitat;
+            classification.textContent = data.classification;
+
+            // Define an array of field IDs
+            const fieldIds = ["lifespan", "habitat", "classification"];
+
+            // Iterate through the field IDs
+            fieldIds.forEach(fieldId => {
+                const fieldElement = document.getElementById(fieldId);
+                // Check if the field exists in the data and if it's not the 'definition' field
+                if (data[fieldId] && fieldId !== "definition") {
+                    fieldElement.textContent = `${fieldId.charAt(0).toUpperCase() + fieldId.slice(1)}: ${data[fieldId]}`;
+                    fieldElement.style.display = "block"; // Show the field
+                } else {
+                    fieldElement.style.display = "none"; // Hide the field if it doesn't exist or if it's the 'definition' field
+                }
+            });
+
+            dataDisplay.style.display = "block"; // Show the dataDisplay section
+        }
+
+
+        document.addEventListener("click", (e) => {
+            if (!e.target.matches("#searchInput")) {
+                dropdown.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

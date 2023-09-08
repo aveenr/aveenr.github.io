@@ -1,0 +1,37 @@
+[
+  { 
+    "term": "Lion", 
+    "definition": "The lion is a large carnivorous mammal.",
+    "lifespan": "10-14 years in the wild",
+    "habitat": "Grasslands and savannas",
+    "classification": "Mammalia" 
+  },
+  { 
+    "term": "Elephant", 
+    "definition": "The elephant is the largest land animal.",
+    "lifespan": "60-70 years",
+    "habitat": "Forests and grasslands",
+    "classification": "Mammalia" 
+  },
+  { 
+    "term": "Biome", 
+    "definition": "Distinct biological communities that have formed in response to a shared physical climate.",
+    "lifespan": "",
+    "habitat": "",
+    "classification": ""
+  },
+  { 
+    "term": "Symbiosis", 
+    "definition": "Is the close and often long-term interaction between two or more different biological species. Major types of broad geographic regions are biomes.",
+    "lifespan": "",
+    "habitat": "",
+    "classification": ""
+  },
+  { 
+    "term": "endangered", 
+    "definition": "There isn't much of it left",
+    "lifespan": "",
+    "habitat": "",
+    "classification": ""
+  }
+]

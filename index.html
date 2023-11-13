@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ushaka Autocomplete</title>
+    <title>Animals Autocomplete</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.png" type="image/png">
 
@@ -25,7 +25,7 @@
 
 </head>
 <body>
-    <h1>Cheat sheet</h1>
+    <h1>Animal</h1>
     
     <div class="autocomplete-container">
         <div class="autocomplete">
@@ -35,11 +35,16 @@
     </div>
 
     <div id="dataDisplay">
-        <h2 id="selectedTerm">Term</h2>
+        <h2 id="selectedTerm">Name</h2>
         <p id="dataContent"></p>
-        <p><span id="lifespan">Lifespan: </span></p>
+        <p><span id="phylum">Phylum: </span></p>
+        <p><span id="a_class">Class: </span></p>
+        <p><span id="characteristics">Characteristics: </span></p>
+        <p><span id="diet">Diet: </span></p>
+        <p><span id="lifespan">lifespan: </span></p>
+        <p><span id="predators">Predators: </span></p>
         <p><span id="habitat">Habitat: </span></p>
-        <p><span id="classification">>Classification: </span></p>
+        <p><span id="usp">Wow: </span></p>
     </div>
 
     <script>
@@ -72,9 +77,14 @@
         const dataDisplay = document.getElementById("dataDisplay");
         const dataContent = document.getElementById("dataContent");
         const selectedTerm = document.getElementById("selectedTerm");
+        const phylum = document.getElementById("phylum");
+        const a_class = document.getElementById("a_class");
+        const characteristics = document.getElementById("characteristics");
+        const diet = document.getElementById("diet");
         const lifespan = document.getElementById("lifespan");
+        const predators = document.getElementById("predators");
         const habitat = document.getElementById("habitat");
-        const classification = document.getElementById("classification");
+        const usp = document.getElementById("usp");
         let selectedIndex = -1;
 
         input.addEventListener("input", autocomplete);
@@ -166,24 +176,41 @@
         function displayData(data) {
             selectedTerm.textContent = data.term; // Update the selected term
             dataContent.textContent = data.definition;
-            lifespan.textContent = data.lifespan;
+            phylum.textContent = data.phylum;
+            a_class.textContent = data.a_class;
+            characteristics.textContent = data.characteristics;
+            diet.textContent = data.diet;
+            predators.textContent = data.predators;
             habitat.textContent = data.habitat;
-            classification.textContent = data.classification;
+            usp.textContent = data.usp;
 
             // Define an array of field IDs
-            const fieldIds = ["lifespan", "habitat", "classification"];
+            const fieldIds = ["phylum", "a_class", "characteristics", "diet", "lifespan", "predators", "habitat", "usp"];
 
             // Iterate through the field IDs
             fieldIds.forEach(fieldId => {
                 const fieldElement = document.getElementById(fieldId);
-                // Check if the field exists in the data and if it's not the 'definition' field
-                if (data[fieldId] && fieldId !== "definition") {
-                    fieldElement.textContent = `${fieldId.charAt(0).toUpperCase() + fieldId.slice(1)}: ${data[fieldId]}`;
-                    fieldElement.style.display = "block"; // Show the field
+                // fieldElement.textContent = `${fieldId.charAt(0).toUpperCase() + fieldId.slice(1)}: ${data[fieldId]}`;
+                // fieldElement.textContent = `${data[fieldId]}`;
+                fieldElement.style.display = "block"; // Show the field
+                if (fieldId == "a_class") {
+                    fieldElement.textContent = "Class: "+ `${data[fieldId]}`;
                 } else {
-                    fieldElement.style.display = "none"; // Hide the field if it doesn't exist or if it's the 'definition' field
+                    fieldElement.textContent = `${fieldId.charAt(0).toUpperCase() + fieldId.slice(1)}: ${data[fieldId]}`;
                 }
             });
+
+            // // Iterate through the field IDs
+            // fieldIds.forEach(fieldId => {
+            //     const fieldElement = document.getElementById(fieldId);
+            //     // Check if the field exists in the data and if it's not the 'definition' field
+            //     if (data[fieldId] && fieldId !== "definition") {
+            //         fieldElement.textContent = `${fieldId.charAt(0).toUpperCase() + fieldId.slice(1)}: ${data[fieldId]}`;
+            //         fieldElement.style.display = "block"; // Show the field
+            //     } else {
+            //         fieldElement.style.display = "none"; // Hide the field if it doesn't exist or if it's the 'definition' field
+            //     }
+            // });
 
             dataDisplay.style.display = "block"; // Show the dataDisplay section
         }

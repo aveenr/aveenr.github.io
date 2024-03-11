@@ -1,17 +1,77 @@
 [
-    { "event": "Training \uD83C\uDFCB\uFE0F", "date": "2024-03-12", "details": "Train to be the best" },
-    { "event": "Fun Day \uD83D\uDC83", "date": "2024-03-14", "details": "Must have fun \uD83D\uDE0C" },
-    { "event": "Frog day \uD83D\uDC38", "date": "2024-03-17", "details": "There will be frogs, lots of frogs<ol><li>pick frog</li><li>name frog<li>release frog</li></ol>" },
-    { "event": "Quarter cut off \uD83D\uDD2A", "date": "2024-03-20", "details": "The quarter, it has ended.<br>See you next quarter." },
-    { "event": "EVG General Meeting \uD83E\uDD1D", "date": "2024-03-30", "details": "There will be meeting stuff in here" },
-    { "event": "Bestest Eventus \uD83E\uDD73", "date": "2024-04-01", "details": "Once in a lifetime<br>don't miss it" },
-    { "event": "Surprise Picnic \uD83C\uDF7D", "date": "2024-04-05", "details": "Pack your picnic baskets, surprise location awaits!" },
-    { "event": "Meme Contest \uD83D\uDCA1", "date": "2024-04-10", "details": "Create the most hilarious memes and win exciting prizes" },
-    { "event": "Space Exploration Day \uD83D\uDEF0", "date": "2024-04-15", "details": "Embark on a virtual journey to explore the wonders of space" },
-    { "event": "Kindness Day\uD83D\uDC9C", "date": "2024-04-22", "details": "Spread joy by performing random acts of kindness throughout the day" },
-    { "event": "Treasure Hunt \uD83D\uDD27", "date": "2024-04-28", "details": "Solve puzzles and get treasure stuff" },
-    { "event": "Superhero Day \uD83E\uDDE1", "date": "2024-05-07", "details": "Channel your inner superhero and be an outer superhero" },
-    { "event": "Bubble Wrap Extravaganza \uD83D\uDCA3", "date": "2024-05-15", "details": "Wrap everything in bubble wrap and see what happens" },
-    { "event": "Singing Day \uD83C\uDFA4", "date": "2024-05-22", "details": "Spread joy by performing random acts of kindness throughout the day" },
-    { "event": "Eating Competition \uD83C\uDF7D\uFE0F", "date": "2024-05-28", "details": "Eat stuff" }
+    {
+        "event": "Training \uD83C\uDFCB\uFE0F",
+        "date": "2024-03-12",
+        "details": "Train to be the best"
+    },
+    {
+        "event": "Fun Day \uD83D\uDC83",
+        "date": "2024-03-14",
+        "details": "Must have fun \uD83D\uDE0C"
+    },
+    {
+        "event": "Frog day \uD83D\uDC38",
+        "date": "2024-03-17",
+        "details": "There will be frogs, lots of frogs<ol><li>pick frog</li><li>name frog<li>release frog</li></ol><br><br>Also testing<br>if this<br>will<br>scroll<br>and not get weird<br>is it<br>there<br>yet<br>random words<br>to make it<br>longer<br><br><br>is this here"
+    },
+    {
+        "event": "Quarter cut off \uD83D\uDD2A",
+        "date": "2024-03-20",
+        "details": "The quarter, it has ended.<br>See you next quarter."
+    },
+    {
+        "event": "EVG General Meeting \uD83E\uDD1D",
+        "date": "2024-03-30",
+        "details": "There will be meeting stuff in here"
+    },
+    {
+        "event": "Bestest Eventus \uD83E\uDD73",
+        "date": "2024-04-01",
+        "details": "Once in a lifetime<br>don't miss it"
+    },
+    {
+        "event": "Surprise Picnic \uD83C\uDF7D",
+        "date": "2024-04-05",
+        "details": "Pack your picnic baskets, surprise location awaits!"
+    },
+    {
+        "event": "Meme Contest \uD83D\uDCA1",
+        "date": "2024-04-10",
+        "details": "Create the most hilarious memes and win exciting prizes"
+    },
+    {
+        "event": "Space Exploration Day \uD83D\uDEF0",
+        "date": "2024-04-15",
+        "details": "Embark on a virtual journey to explore the wonders of space"
+    },
+    {
+        "event": "Kindness Day\uD83D\uDC9C",
+        "date": "2024-04-22",
+        "details": "Spread joy by performing random acts of kindness throughout the day"
+    },
+    {
+        "event": "Treasure Hunt \uD83D\uDD27",
+        "date": "2024-04-28",
+        "details": "Solve puzzles and get treasure stuff"
+    },
+    {
+        "event": "Superhero Day \uD83E\uDDE1",
+        "date": "2024-05-07",
+        "details": "Channel your inner superhero and be an outer superhero"
+    },
+    {
+        "event": "Bubble Wrap Extravaganza \uD83D\uDCA3",
+        "date": "2024-05-15",
+        "details": "Wrap everything in bubble wrap and see what happens"
+    },
+    {
+        "event": "Singing Day \uD83C\uDFA4",
+        "date": "2024-05-22",
+        "details": "Spread joy by performing random acts of kindness throughout the day"
+    },
+    {
+        "event": "Eating Competition \uD83C\uDF7D\uFE0F",
+        "date": "2024-05-28",
+        "details": "Eat stuff"
+    }
 ]

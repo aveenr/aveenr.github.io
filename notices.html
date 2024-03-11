@@ -20,7 +20,7 @@
             text-align: center;
         }
 
-        h1,h2 {
+        h1, h2 {
             color: #6ec1e4;
         }
 
@@ -33,10 +33,6 @@
 
         .list-group-item:hover {
             background-color: #495057;
-        }
-
-        .list-group-item:hover {
-            background-color: #4054b2;
         }
 
         .list-group-item.active {
@@ -55,6 +51,24 @@
             background-color: #343a40;
             border-radius: 5px;
             display: none;
+        }
+
+        /* Center the text inside the list item */
+        .list-group-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Separate styles for event name and date */
+        .event-name {
+            color: #6ec1e4;
+        }
+
+        .event-date {
+            color: #999;
         }
     </style>
 </head>
@@ -98,21 +112,16 @@
                     const listItem = document.createElement('a');
                     listItem.classList.add('list-group-item', 'list-group-item-action');
 
-                    const row = document.createElement('div');
-                    row.classList.add('row');
+                    const eventNameDiv = document.createElement('div');
+                    eventNameDiv.classList.add('event-name');
+                    eventNameDiv.textContent = event.event;
 
-                    const eventColumn = document.createElement('div');
-                    eventColumn.classList.add('col-md-6');
-                    eventColumn.textContent = event.event;
+                    const eventDateDiv = document.createElement('div');
+                    eventDateDiv.classList.add('event-date');
+                    eventDateDiv.textContent = event.date;
 
-                    const dateColumn = document.createElement('div');
-                    dateColumn.classList.add('col-md-6', 'text-end');
-                    dateColumn.textContent = event.date;
-
-                    row.appendChild(eventColumn);
-                    row.appendChild(dateColumn);
-
-                    listItem.appendChild(row);
+                    listItem.appendChild(eventNameDiv);
+                    listItem.appendChild(eventDateDiv);
 
                     listItem.addEventListener('click', () => displayEventDetails(event));
                     eventsList.appendChild(listItem);

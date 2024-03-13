@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aquarium Map</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+    body {
+      background-color: #343a40; /* Dark background */
+      color: #fff; /* Light text */
+    }
+    .modal-content {
+      background-color: #212529; /* Dark modal background */
+      color: #fff; /* Light modal text */
+    }
+  </style>
+</head>
+<body>
+
+<!-- SVG Map -->
+<svg width="100%" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Empty space in the middle -->
+<!--  <rect x="150" y="150" width="300" height="300" fill="#343a40" />-->
+
+<!--  &lt;!&ndash; Rooms &ndash;&gt;-->
+<!--  &lt;!&ndash; Rectangle rooms &ndash;&gt;-->
+<!--  <path id="livingRoom" d="M0,0 L100,0 L100,200 L0,200 Z" fill="#007bff" transform="translate(50, 100)" />-->
+<!--  <path id="kitchen" d="M0,0 L200,0 L200,100 L0,100 Z" fill="#28a745" transform="translate(200, 100)" />-->
+<!--  <path id="bedroom" d="M0,0 L100,0 L100,150 L0,150 Z" fill="#dc3545" transform="translate(400, 100)" />-->
+<!--  <path d="M100,100 C150,350 250,0 300,100" fill="none" stroke="red" />-->
+
+
+<!--  &lt;!&ndash; Triangular rooms &ndash;&gt;-->
+<!--&lt;!&ndash;  <path id="bathroom" d="M0,0 L100,0 L50,100 Z" fill="#ffc107" transform="translate(50, 350)" />&ndash;&gt;-->
+<!--  <path id="bathroom" d="M0,0 L100,0 L50,100 Z" fill="#ffc107" transform="translate(50, 300)" />-->
+<!--  <path id="office" d="M0,0 L100,0 L50,100 Z" fill="#17a2b8" transform="translate(200, 350)" />-->
+<!--  <path id="guestRoom" d="M0,0 L100,0 L50,100 Z" fill="#6610f2" transform="translate(400, 350)" />-->
+
+<!--  &lt;!&ndash; Custom shape &ndash;&gt;-->
+<!--  <path id="customRoom" d="M0,0 L100,0 L0,100 L-100,100 Z" fill="#ffc107" transform="translate(350, 150)" />-->
+
+<!--  line to draw viewbox border-->
+<!--  <path d="M0,0 L0,0 600,600 L600,600 0,600 C0,00 150,450 300,0 C300,0 550,200 600,600 Z" fill="none" stroke="blue" />-->
+  <path d="M0,0 L0,0 600,0 L600,0 600,600 L600,600 0,600 Z" fill="#2F567C" stroke="blue" />
+
+  <!-- Ushaka Map -->
+<!--  <path id="TurtleLagoon" d="m 237.13227,198.56553 2.84427,6.81302 -1.52135,13.49375 -4.63021,9.85573 -10.58334,7.27604 -13.82447,4.16719 -9.72344,-13.29531 -1.12448,-13.49375 -1.32292,-2.97657 20.17448,-15.94114 z" fill="#ffc107" transform=" translate(100, 150)" />-->
+<!--  <path id="SnorkelLagoon" d="m 230.91456,84.133236 -19.31458,16.801044 15.27969,24.34166 -2.24896,1.5875 -7.2099,67.60105 19.71146,4.10104 8.20208,-2.3151 11.90625,1.71979 9.39271,-6.08542 9.72344,-18.71927 -3.07578,-14.98203 -11.07943,-4.86172 -5.25163,-9.21717 -0.37418,-17.25893 z" fill="#ffc107" transform="translate(100, 150)" />-->
+<!--  <path id="RockyReef" d="m 197.24633,210.40563 -5.4901,3.53881 -1.2237,9.45885 -9.98802,6.44922 -6.31693,2.61276 -7.67291,27.15287 17.49557,9.45885 23.05182,-7.40833 8.06979,-12.23698 -5.75468,-9.26042 -9.72344,-13.29531 -1.12448,-13.49375 z" fill="#efefef" transform="translate(100, 150)" />-->
+<!--  <path id="OpenOcean" d="m 161.72602,207.62751 -8.46667,30.82396 -22.82031,-13.22917 -3.9026,-6.81302 -6.48229,1.45521 -2.64584,-4.36563 1.65365,-8.73125 -3.70417,-14.48594 -6.81302,-1.5875 -3.9026,-11.8401 2.24896,-7.73906 3.9026,-1.25677 -1.98438,-11.70782 22.68803,-10.78177 12.63385,8.66511 0.52917,4.16718 -5.82084,9.78959 0.92604,13.82448 z" fill="#ffccee" transform="translate(100, 150)" />-->
+<!--  <path id="LargeSharks" d="m 153.06092,149.48532 -20.96823,-15.01511 9.32656,-26.1276 33.80052,-19.248437 8.46667,23.018747 z" fill="#cdecde" transform="translate(100, 150)" />-->
+<!--  <path id="ReefPredators" d="m 201.94963,103.70259 6.48229,-6.680729 22.09271,-18.719271 -8.86355,-14.287501 -34.7927,16.470313 8.20208,22.489588 2.57969,-1.32292 z" fill="#ffc107" transform="translate(100, 150)" />-->
+
+  <path id="TurtleLagoon" d="m 237.13227,198.56553 2.84427,6.81302 -1.52135,13.49375 -4.63021,9.85573 -10.58334,7.27604 -13.82447,4.16719 -9.72344,-13.29531 -1.12448,-13.49375 -1.32292,-2.97657 20.17448,-15.94114 z" fill="#5BD3F0" transform="translate(-150, -100) scale(2.5)" />
+  <path id="SnorkelLagoon" d="m 230.91456,84.133236 -19.31458,16.801044 15.27969,24.34166 -2.24896,1.5875 -7.2099,67.60105 19.71146,4.10104 8.20208,-2.3151 11.90625,1.71979 9.39271,-6.08542 9.72344,-18.71927 -3.07578,-14.98203 -11.07943,-4.86172 -5.25163,-9.21717 -0.37418,-17.25893 z" fill=#5B75F0 transform="translate(-150, -100) scale(2.5)" />
+  <g>
+    <path id="RockyReef" d="m 197.24633,210.40563 -5.4901,3.53881 -1.2237,9.45885 -9.98802,6.44922 -6.31693,2.61276 -7.67291,27.15287 17.49557,9.45885 23.05182,-7.40833 8.06979,-12.23698 -5.75468,-9.26042 -9.72344,-13.29531 -1.12448,-13.49375 z" fill="#5BA4F0" transform="translate(-150, -100) scale(2.5)" />
+    <text x="320" y="530" text-anchor="middle" alignment-baseline="middle" fill="blue" font-size="12px">Rocky Reef 🪨</text>
+  </g>
+
+  <path id="OpenOcean" d="m 161.72602,207.62751 -8.46667,30.82396 -22.82031,-13.22917 -3.9026,-6.81302 -6.48229,1.45521 -2.64584,-4.36563 1.65365,-8.73125 -3.70417,-14.48594 -6.81302,-1.5875 -3.9026,-11.8401 2.24896,-7.73906 3.9026,-1.25677 -1.98438,-11.70782 22.68803,-10.78177 12.63385,8.66511 0.52917,4.16718 -5.82084,9.78959 0.92604,13.82448 z" fill="#9DF0E5" transform="translate(-150, -100) scale(2.5)" />
+  <path id="LargeSharks" d="m 153.06092,149.48532 -20.96823,-15.01511 9.32656,-26.1276 33.80052,-19.248437 8.46667,23.018747 z" fill="#715BF0" transform="translate(-150, -100) scale(2.5)" />4
+  <path id="ReefPredators" d="m 201.94963,103.70259 6.48229,-6.680729 22.09271,-18.719271 -8.86355,-14.287501 -34.7927,16.470313 8.20208,22.489588 2.57969,-1.32292 z" fill="#5BD3F0" transform="translate(-150, -100) scale(2.5)" />
+
+
+
+</svg>
+
+<!-- Modals -->
+<div class="modal" id="modalTurtleLagoon">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Turtle Lagoon</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        Home of the turtles 🐢
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="modal" id="modalKitchen">-->
+<!--  <div class="modal-dialog modal-dialog-centered">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title">Kitchen Details</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        Kitchen information goes here...-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="modal" id="modalSnorkelLagoon">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Snorkel Lagoon</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        Lagoon to snorkel in
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modalRockyReef">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Rocky Reef</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        Reef with rocks
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modalOpenOcean">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Open Ocean</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        In vehicula nisl pretium, faucibus nunc quis, pretium ante. Vivamus ullamcorper imperdiet tellus iaculis elementum. Duis porttitor nunc sit amet rutrum posuere. Phasellus finibus, enim ut volutpat tincidunt, quam sem vulputate mi, ut sagittis enim diam ut orci. Phasellus porta purus non dui congue sollicitudin. Vivamus aliquet ligula dolor, quis faucibus neque commodo nec. In commodo risus ex, ut gravida nibh dictum faucibus. Sed commodo rhoncus nunc. Duis laoreet varius consectetur. In efficitur orci vitae interdum vestibulum. Morbi nec magna diam. In nec sem ullamcorper, feugiat urna sit amet, ultricies diam. Quisque vehicula lorem ac maximus imperdiet. Integer ornare ornare elit, in aliquet nisi ullamcorper et.
+        <br><br>Second time, looking to test scrolling<br><br>
+        In vehicula nisl pretium, faucibus nunc quis, pretium ante. Vivamus ullamcorper imperdiet tellus iaculis elementum. Duis porttitor nunc sit amet rutrum posuere. Phasellus finibus, enim ut volutpat tincidunt, quam sem vulputate mi, ut sagittis enim diam ut orci. Phasellus porta purus non dui congue sollicitudin. Vivamus aliquet ligula dolor, quis faucibus neque commodo nec. In commodo risus ex, ut gravida nibh dictum faucibus. Sed commodo rhoncus nunc. Duis laoreet varius consectetur. In efficitur orci vitae interdum vestibulum. Morbi nec magna diam. In nec sem ullamcorper, feugiat urna sit amet, ultricies diam. Quisque vehicula lorem ac maximus imperdiet. Integer ornare ornare elit, in aliquet nisi ullamcorper et.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modalLargeSharks">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Large Sharks</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        Sharks that are large<br>
+        Shark eats
+        <ol>
+          <ul>fish</ul>
+          <ul>seals</ul>
+          <ul>penguins</ul>
+        </ol>
+        <a href="https://www.google.com">Visit google for more info</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modalReefPredators">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Reef Predators</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        Reef predators<br>
+        holds so much water<br>
+        predator stuff here<br><br>
+        a blank line above with a double line break
+        <ol><li>a point</li><li>followed by another</li></ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript to handle clicks on SVG elements -->
+<script>
+  $(document).ready(function() {
+    // Attach click event to SVG elements
+    $('path').click(function() {
+      var roomId = $(this).attr('id'); // Get the ID of the clicked element
+      $('#modal' + roomId.charAt(0).toUpperCase() + roomId.slice(1)).modal('show'); // Show corresponding modal
+    });
+  });
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

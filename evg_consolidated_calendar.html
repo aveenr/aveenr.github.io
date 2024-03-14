@@ -46,7 +46,7 @@
     <div class="tab-pane fade show active" id="all-events" role="tabpanel" aria-labelledby="all-events-tab">
       <div class="col-12 text-center">
         <h3>2024 EVG Calendar</h3>
-        <button id="toggleFilterButton" class="btn btn-primary">All Events</button>
+        <button id="toggleFilterButton" class="btn btn-secondary">All Events</button>
       </div>
       <table class="table table-striped table-dark">
         <thead>
@@ -159,7 +159,7 @@
   document.getElementById('toggleFilterButton').addEventListener('click', () => {
     filterEventsFromToday = !filterEventsFromToday;
     const button = document.getElementById('toggleFilterButton');
-    button.textContent = filterEventsFromToday ? 'All Events' : 'Only Future Events';
+    button.textContent = filterEventsFromToday ? 'All Events' : 'Upcoming Events';
     displayAllEvents();
   });
 </script>

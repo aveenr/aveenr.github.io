@@ -1,61 +1,61 @@
 [
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting November",
         "date": "2023-11-13",
-        "details": "Agenda items: Discuss budget allocation, Plan upcoming events"
+        "details": "<b>Agenda</b><br><ol><li>Firstly</li><li>Secondly</li></ol>"
     },
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting January",
         "date": "2024-01-08",
-        "details": "Agenda items: Review previous actions, Plan for outreach programs"
+        "details": "## Agenda\n1. Firstly\n2. Secondly"
     },
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting February",
         "date": "2024-02-12",
-        "details": "Agenda items: Evaluate project progress, Brainstorm new initiatives"
+        "details": "<ol><li>There were no matters arising from the Committee meeting</li><li>There were no matters arising from the General meeting</li></ol>"
     },
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting March",
         "date": "2024-03-11",
-        "details": "Agenda items: Finalize event logistics, Discuss budget revisions"
+        "details": "<ol><li>There were no matters arising from the Committee meeting</li><li>There were no matters arising from the General meeting</li></ol>"
     },
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting April",
         "date": "2024-04-08",
-        "details": "Agenda items: Election of new officers, Review membership applications"
+        "details": "<ol><li>There were no matters arising from the Committee meeting</li><li>There were no matters arising from the General meeting</li></ol>"
     },
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting May",
         "date": "2024-05-13",
-        "details": "Agenda items: Plan fundraising activities, Coordinate volunteer schedule"
+        "details": "<ol><li>There were no matters arising from the Committee meeting</li><li>There were no matters arising from the General meeting</li></ol>"
     },
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting June",
         "date": "2024-06-10",
-        "details": "Agenda items: Organize training workshops, Update website content"
+        "details": "<ol><li>There were no matters arising from the Committee meeting</li><li>There were no matters arising from the General meeting</li></ol>"
     },
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting July",
         "date": "2024-07-08",
         "details": "Agenda items: Recap recent events, Discuss partnerships with other organizations"
     },
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting August",
         "date": "2024-08-12",
         "details": "Agenda items: Review financial reports, Plan end-of-year celebration"
     },
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting September",
         "date": "2024-09-09",
         "details": "Agenda items: Finalize budget for next fiscal year, Schedule training sessions"
     },
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting October",
         "date": "2024-10-14",
         "details": "Agenda items: Discuss member feedback, Plan community outreach events"
     },
     {
-        "event": "Committee Meeting",
+        "event": "Committee Meeting November",
         "date": "2024-11-11",
         "details": "Agenda items: Plan holiday charity drive, Evaluate year-end achievements"
     }

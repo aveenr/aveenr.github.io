@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EVG Consolidated Calendar 2024</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS for Dark Theme -->
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+    }
+    .nav-tabs .nav-link {
+      color: #fff;
+    }
+    .nav-tabs .nav-link.active {
+      background-color: #343a40;
+    }
+    .tab-pane {
+      background-color: #343a40;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    .event-name, .event-date {
+      color: #fff; /* Set text color for event name and date */
+    }
+    .modal-content {
+      background-color: #343a40; /* Set background color for modal content */
+      color: #fff; /* Set text color for modal content */
+    }
+    /* Custom CSS for transparent off-canvas sidebar */
+    .offcanvas {
+      background: transparent;
+<!--      background: rgba(0, 0, 0, 0.2); /* 50% opacity black */-->
+      background-color: rgba(255, 255, 255, 0.2); /* White color with 50% opacity */
+      border: none;
+      box-shadow: none;
+    }
+    .offcanvas-header {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+
+  <!-- Navbar for fullscreen mode -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary d-none d-md-flex">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button id="committeeMeetingButton" class="btn btn-secondary nav-link">Committee Meetings</button>
+          </li>
+          <li class="nav-item">
+            <button id="profileEventsButton" class="btn btn-secondary nav-link">Profile Events</button>
+          </li>
+          <li class="nav-item">
+            <button id="generalMeetingButton" class="btn btn-secondary nav-link">General Meetings</button>
+          </li>
+          <li class="nav-item">
+            <button id="year2024EventsButton" class="btn btn-secondary nav-link">2024 Events</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Transparent off-canvas sidebar (visible on mobile) -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarNav">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Navigation</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <button id="committeeMeetingButton" class="btn btn-secondary w-100 mb-2">Committee Meetings</button>
+      <button id="profileEventsButton" class="btn btn-primary w-100 mb-2">Profile Events</button>
+      <button id="generalMeetingButton" class="btn btn-primary w-100 mb-2">General Meetings</button>
+      <button id="year2024EventsButton" class="btn btn-primary w-100">2024 Events</button>
+    </div>
+  </div>
+
+
+  <!-- Hamburger menu icon (visible on mobile) -->
+  <div class="row mb-3 d-md-none">
+    <div class="col-12 text-start">
+      <button class="btn btn-secondary" id="toggleNavButton" data-bs-toggle="offcanvas" data-bs-target="#sidebarNav">&#9776;</button>
+    </div>
+  </div>
+
+
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="all-events" role="tabpanel" aria-labelledby="all-events-tab">
+      <div class="col-12 text-center">
+        <h3>2024 EVG Calendar</h3>
+      </div>
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Event</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody id="allEventsContainer"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eventModalLabel">Event Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="eventModalBody"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  async function displayEvents(url, containerId) {
+    try {
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch events: ${response.statusText}`);
+      }
+
+      const eventData = await response.json();
+
+      if (!Array.isArray(eventData)) {
+        throw new Error('Invalid JSON structure. Expected an array.');
+      }
+
+      const eventsContainer = document.getElementById(containerId);
+      eventsContainer.innerHTML = ''; // Clear existing events
+
+      eventData.forEach(event => {
+        const row = document.createElement('tr');
+
+        const eventNameCell = document.createElement('td');
+        eventNameCell.textContent = event.event;
+
+        const eventDateCell = document.createElement('td');
+        eventDateCell.textContent = event.date;
+
+        row.appendChild(eventNameCell);
+        row.appendChild(eventDateCell);
+
+        row.addEventListener('click', () => displayEventDetails(event));
+        eventsContainer.appendChild(row);
+      });
+    } catch (error) {
+      console.error('Error fetching or displaying events:', error);
+    }
+  }
+
+  function displayEventDetails(event) {
+    const eventDetails = event.details || 'No details available';
+    const eventModalBody = document.getElementById('eventModalBody');
+    eventModalBody.innerHTML = `<p>${eventDetails}</p>`;
+    const eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
+    eventModal.show();
+  }
+
+  // Add event listeners to navigation buttons
+  document.getElementById('committeeMeetingButton').addEventListener('click', () => {
+    displayEvents('committee_meeting_dates.json', 'allEventsContainer');
+  });
+
+  document.getElementById('profileEventsButton').addEventListener('click', () => {
+    displayEvents('profile_events.json', 'allEventsContainer');
+  });
+
+  document.getElementById('generalMeetingButton').addEventListener('click', () => {
+    displayEvents('general_meeting_dates.json', 'allEventsContainer');
+  });
+
+  document.getElementById('year2024EventsButton').addEventListener('click', () => {
+    displayEvents('2024_events.json', 'allEventsContainer');
+  });
+
+  // Toggle navigation buttons visibility on mobile
+  document.getElementById('toggleNavButton').addEventListener('click', () => {
+    const navButtons = document.querySelector('.d-none.d-md-flex');
+    navButtons.classList.toggle('d-flex');
+  });
+
+  // Display all events initially
+  displayEvents('committee_meeting_dates.json', 'allEventsContainer');
+
+  // Close off-canvas sidebar on mobile after clicking an option
+  document.querySelectorAll('.btn.btn-primary.w-100').forEach(button => {
+    button.addEventListener('click', () => {
+      const offcanvasInstance = bootstrap.Offcanvas.getInstance(document.getElementById('sidebarNav'));
+      if (offcanvasInstance) {
+        offcanvasInstance.hide();
+      }
+      // Logic to display data or perform an action based on the clicked option
+      const clickedOption = button.textContent;
+      switch (clickedOption) {
+        case 'Committee Meetings':
+          displayEvents('committee_meeting_dates.json', 'allEventsContainer');
+          break;
+        case 'Profile Events':
+          displayEvents('profile_events.json', 'allEventsContainer');
+          break;
+        case 'General Meetings':
+          displayEvents('general_meeting_dates.json', 'allEventsContainer');
+          break;
+        case '2024 Events':
+          displayEvents('2024_events.json', 'allEventsContainer');
+          break;
+        default:
+          console.log('No action specified for clicked option:', clickedOption);
+          break;
+      }
+    });
+  });
+
+  // Close off-canvas sidebar on mobile after clicking an option
+  document.querySelectorAll('.btn.btn-primary.w-100').forEach(button => {
+    button.addEventListener('click', () => {
+      const offcanvasInstance = bootstrap.Offcanvas.getInstance(document.getElementById('sidebarNav'));
+      if (offcanvasInstance) {
+        offcanvasInstance.hide();
+      }
+      // Your logic to display content below the clicked option goes here
+      const clickedOption = button.textContent;
+      console.log('Clicked option:', clickedOption);
+    });
+  });
+</script>
+</body>
+</html>

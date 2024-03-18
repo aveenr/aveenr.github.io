@@ -6,12 +6,13 @@
   <title>EVG Consolidated Calendar 2024</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <!-- Custom CSS for Dark Theme -->
   <style>
     body {
       background-color: #121212;
+      background-color: #242831;
       color: #fff;
+
     }
     .nav-tabs .nav-link {
       color: #fff;
@@ -29,6 +30,8 @@
     }
     .modal-content {
       background-color: #343a40; /* Set background color for modal content */
+      background-color: rgba(52, 58, 64, 0.8);
+      border-radius: 25px;
       color: #fff; /* Set text color for modal content */
     }
     .sidebar {
@@ -36,7 +39,7 @@
       background-color: #343a40; /* Background color for the sidebar */
       padding: 10px;
       border-radius: 0px;
-      background-position: center 0px; /* Align the background image to the top */
+      background-position: center -460px; /* Align the background image to the top */
     }
 
     .sidebar button {
@@ -54,9 +57,11 @@
     }
 
     .sidebar a:hover {
-      background-color: #495057; /* Background color on hover */
-      background-color: cyan; /* Background color on hover */
       background-color: rgba(52, 58, 64, 0.5); /* Background color with 50% opacity */
+    }
+
+    .sidebar a:hover span {
+      background-color: transparent; /* Set background color for the text only */
     }
 
     .sidebar a.active {
@@ -74,17 +79,31 @@
     .toggle-icon {
       font-size: 24px; /* Adjust icon size */
     }
-<!--    .toggle-button:hover {-->
-<!--      background-color: #2c3237; /* Darkened color on hover */-->
-<!--      border-color: #2c3237; /* Darkened color on hover */-->
-<!--    }-->
-<!--    .toggle-button:active,-->
-<!--    .toggle-button:focus {-->
-<!--        background-color: #1e2226; /* Different dark color on active/focus */-->
-<!--        border-color: #1e2226; /* Different dark color on active/focus */-->
-<!--        /* Other active/focus styles */-->
-<!--    }-->
 
+    /* Media query for screen widths less than or equal to 720px */
+    @media (max-width: 720px) {
+      .sidebar {
+        background-position: center 0px !important; /* Adjust background position for smaller screens */
+      }
+    }
+    /* Media query for screen widths between 320px and 480px */
+    @media (min-width: 320px) and (max-width: 480px) {
+      .sidebar {
+        background-position: center -0px !important; /* Adjust background position for screens between 720px and 1080px */
+      }
+    }
+      /* Media query for screen widths between 481px and 768px */
+    @media (min-width: 481px) and (max-width: 768px) {
+      .sidebar {
+        background-position: center -50px !important; /* Adjust background position for screens between 720px and 1080px */
+      }
+    }
+    /* Media query for screen widths between 721px and 1080px */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .sidebar {
+        background-position: center -260px !important; /* Adjust background position for screens between 720px and 1080px */
+      }
+    }
   </style>
 
 </head>
@@ -95,10 +114,6 @@
   <!-- Custom styled toggle button -->
   <button class="btn btn-primary toggle-button" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-expanded="false" aria-controls="sidebarCollapse">
     <span class="toggle-icon">&#9776;</span> <!-- Hamburger icon -->
-    <audio id="audioPlayer" autoplay loop>
-      <source src="https://cdn.pixabay.com/audio/2021/09/06/audio_37aad22374.mp3" type="audio/mp3">
-      Your browser does not support the audio element.
-    </audio>
   </button>
   <div class="collapse" id="sidebarCollapse">
     <a href="#" onclick="displayAllEvents()">All Events</a>
@@ -108,6 +123,7 @@
     <a href="#" onclick="displayEventsFromJson('2024_events.json')">2024 Events</a>
   </div>
 </div>
+
 
 <!-- Page Content -->
 <div class="content">
@@ -224,47 +240,12 @@
           row.appendChild(eventDateCell);
 
           row.addEventListener('click', () => displayEventDetails(event));
+
           eventsContainer.appendChild(row);
         }
       }
     });
   }
-
-<!--  function displayEvents(events) {-->
-<!--    // Get current date-->
-<!--    const currentDate = new Date();-->
-
-<!--    // Sort events by date-->
-<!--    events.sort((a, b) => new Date(a.date) - new Date(b.date));-->
-
-<!--    const eventsContainer = document.getElementById('allEventsContainer');-->
-
-<!--    eventsContainer.innerHTML = ''; // Clear existing events-->
-
-<!--    events.forEach(event => {-->
-<!--      if (event && event.event && event.date) {-->
-<!--        const eventDate = new Date(event.date);-->
-
-<!--        // Check if the event date is on or after the current date if filter is enabled-->
-<!--        // Otherwise, show all events-->
-<!--        if (!filterEventsFromToday || eventDate >= currentDate) {-->
-<!--          const row = document.createElement('tr');-->
-
-<!--          const eventNameCell = document.createElement('td');-->
-<!--          eventNameCell.textContent = event.event;-->
-
-<!--          const eventDateCell = document.createElement('td');-->
-<!--          eventDateCell.textContent = event.date;-->
-
-<!--          row.appendChild(eventNameCell);-->
-<!--          row.appendChild(eventDateCell);-->
-
-<!--          row.addEventListener('click', () => displayEventDetails(event));-->
-<!--          eventsContainer.appendChild(row);-->
-<!--        }-->
-<!--      }-->
-<!--    });-->
-<!--  }-->
 
   function displayEventDetails(event) {
     const eventDetails = event.details || 'No details available';
@@ -273,6 +254,8 @@
     const eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
     eventModal.show();
   }
+
+
 
   // Display all events initially
   displayAllEvents();

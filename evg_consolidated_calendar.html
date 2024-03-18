@@ -21,14 +21,16 @@
     .tab-pane {
       background-color: #343a40;
       padding: 20px;
-      border-radius: 5px;
+      border-radius: 25px;
     }
     .event-name, .event-date {
       color: #fff; /* Set text color for event name and date */
     }
     .modal-content {
       background-color: #343a40; /* Set background color for modal content */
+      background-color: rgba(52, 58, 64, 0.8); /* adding opacity so you can still see the calendar with the modal up */
       color: #fff; /* Set text color for modal content */
+      border-radius: 25px;
     }
   </style>
 </head>
@@ -41,7 +43,7 @@
       <div class="col-12 text-center">
         <h3>2024 EVG Calendar</h3>
       </div>
-      <table class="table table-striped table-dark">
+      <table class="table table-striped table-dark table-hover">
         <thead>
           <tr>
             <th scope="col">Event</th>

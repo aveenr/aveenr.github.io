@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Info Display</title>
+  <!-- Embed Google's Noto Sans font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="animal_style.css" rel="stylesheet">
+  <style>
+    /* Add your custom styles here */
+  </style>
+</head>
+<body class="bg-dark text-light d-flex align-items-center justify-content-center min-vh-100">
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 text-center">
+      <div class="form-group">
+        <label for="animalSearch">Search Animal:</label>
+        <input type="text" class="form-control bg-dark text-light text-center" id="animalSearch" placeholder="Enter animal name..." data-provide="typeahead" autocomplete="off">
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-dark text-light">
+    <div class="card-header text-center" id="animalHeader">
+      <h2 id="animalName"></h2>
+    </div>
+    <div class="card-body bg-dark text-justify" id="topicsContainer">
+      <!-- Topics will be added dynamically here -->
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+<script>
+  // Function to toggle the icon
+  function toggleIcon(element) {
+    var icon = element.querySelector('.rotate-icon');
+    icon.classList.toggle('collapsed');
+  }
+
+  // Function to search for the input animal
+  function searchAnimal(animalName) {
+    fetch('marine_animals.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('JSON data:', data);
+
+        var animalData = data.animals.find(animal => animal.name.toLowerCase() === animalName.toLowerCase());
+        if (animalData) {
+          console.log('Found animal:', animalData);
+          document.getElementById('animalName').innerText = `${animalData.name}`;
+          var topicsContainer = document.getElementById('topicsContainer');
+          topicsContainer.innerHTML = ''; // Clear previous topics
+          animalData.topics.forEach(topic => {
+            var topicHtml = `
+              <div class="topic-item">
+                <h5 class="mb-3">
+                  <a href="#${topic.topic}" class="d-block collapsed" data-toggle="collapse" aria-expanded="false" onclick="toggleIcon(this)">
+                    ${topic.topic} <i class="fas fa-chevron-down float-right rotate-icon"></i>
+                  </a>
+                </h5>
+                <div id="${topic.topic}" class="collapse">
+                  <p>${topic.info}</p>
+                </div>
+              </div>
+            `;
+            topicsContainer.innerHTML += topicHtml;
+          });
+
+          // Add event listeners to toggle icons after topics are loaded
+          var toggleIcons = topicsContainer.querySelectorAll('.rotate-icon');
+          toggleIcons.forEach(icon => {
+            icon.addEventListener('click', function() {
+              icon.classList.toggle('collapsed');
+            });
+          });
+        } else {
+          console.log('Animal not found:', animalName);
+          alert('Animal not found. Please try again.');
+        }
+      })
+      .catch(error => console.error('Error fetching JSON:', error));
+  }
+
+  // Load animal names for autocomplete
+  var animalNames = [];
+  fetch('marine_animals.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('JSON data:', data);
+      animalNames = data.animals.map(animal => animal.name);
+      $('#animalSearch').typeahead({
+        source: animalNames,
+        autoSelect: true, // Automatically select the first suggestion
+        afterSelect: function(item) {
+          searchAnimal(item); // Pass the selected suggestion to the search function
+        }
+      });
+    })
+    .catch(error => console.error('Error fetching JSON:', error));
+</script>
+
+</body>
+</html>

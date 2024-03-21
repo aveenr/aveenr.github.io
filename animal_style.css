@@ -1,0 +1,170 @@
+    body {
+        font-family: 'Noto Sans', sans-serif; /* Use Noto Sans font for entire page */
+    }
+    /* Light mode styles */
+    body.light-mode {
+      background-color: #fff;
+      color: #333;
+
+    }
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .rotate-icon {
+      transition: transform 0.3s ease-in-out; /* Adjust the duration and easing as needed */
+      transform: rotate(0deg); /* Start upright */
+    }
+    .rotate-icon.collapsed {
+      transform: rotate(-180deg); /* Rotate 180 degrees to the right when collapsed */
+    }
+
+    /* Custom styles for the search box */
+    .form-control {
+      background-color: #333; /* Dark mode background color */
+      color: #fff; /* Text color */
+      border-color: #222; /* Border color */
+    }
+
+    .form-control::placeholder {
+      color: #999; /* Placeholder text color */
+    }
+
+    /* Focus styles */
+    .form-control:focus {
+      border-color: #999; /* Border color on focus */
+      box-shadow: none; /* Remove box shadow on focus */
+    }
+
+
+    /* Custom styles for the toggle switch */
+    .custom-control-input:checked + .custom-control-label::before {
+      background-color: #333 !important; /* Dark mode toggle border color */
+      border-color: #fff !important; /* Dark mode toggle border color */
+    }
+
+    .custom-control-input:checked + .custom-control-label::after {
+      background-color: #fff !important; /* Dark mode toggle circle color */
+    }
+
+    .custom-control-input:not(:checked) + .custom-control-label::before {
+      background-color: #ccc !important; /* Light mode toggle border color */
+      border-color: #333 !important; /* Light mode toggle border color */
+    }
+
+    .custom-control-input:not(:checked) + .custom-control-label::after {
+      background-color: #333 !important; /* Light mode toggle circle color */
+    }
+
+    /* Remove blue outline on focus */
+    .custom-control-input:focus + .custom-control-label::before {
+      box-shadow: none !important;
+    }
+
+    /* Custom styles for the topics and chevron icons */
+    .card-header, .card-body {
+      background-color: inherit; /* Inherit background color from body */
+    }
+
+
+
+    .dropdown-menu, .dropdown-item, .dropdown-item:focus, .dropdown-item:hover, .dropdown-item:active {
+    background-color: #30353b;
+    color: #f8f9fa;
+    }
+
+    .dropdown-item:focus, .dropdown-item:hover {
+        color: #805626;
+        text-decoration: bold;
+        background-color: #5394B0;
+    }
+
+  /* Custom styles for the topics and info sections */
+  /* the actual header with the name of the animal */
+  .card-header {
+    background-color: #343a40; /* Darker background color for header */
+    color: #f8f9fa; /* Text color for header */
+    padding: 15px; /* Increase padding for header */
+    border-bottom: 2px solid #222; /* Border at the bottom of header */
+    border-radius: 5px 5px 0 0; /* Rounded corners for top */
+  }
+
+  /* The topic header */
+  #topicsContainer a {
+      background-color: #30353b;
+      color: #f8f9fa; /* Inherit color from the general theme */
+      padding: 10px;
+  }
+
+  .card-body {
+    background-color: #999; /* Lighter background color for body */
+    padding: 10px; /* Increase padding for body */
+    border-radius: 0px; /* Rounded corners for bottom */
+  }
+
+    /* topic info */
+  .card-body p {
+    background-color: #30353b;
+    color: #6ec1e4; /* Text color for topic info */
+    padding: 10px; /* Increase padding for body */
+    border-radius: 0px; /* Rounded corners for bottom */
+  }
+
+  /* Increase font size and weight for topics */
+  .topic-title {
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 50px;
+  }
+
+  /* Add a separator between topics and info */
+  .separator {
+    border-top: 1px solid #ccc;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    /* Style for the topics */
+    .topic-item {
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+
+
+    .topic-item a {
+      color: #fff; /* Change the color of the topic links */
+    }
+
+    /* Style for the info about each topic */
+    .collapse .topic-info {
+      color: #6ec1e4; /* Change the color of the topic info */
+      background-color : red;
+      padding: 50px;
+      display: inline-block; /* Make the info display inline */
+      margin-left: 10px; !important/* Add margin to separate info from topic */
+      color: green;
+    }
+
+    /* Style for the toggle icons */
+    .rotate-icon {
+      transition: transform 0.3s ease; /* Add a smooth transition for the toggle icons */
+    }
+
+    .rotate-icon.collapsed {
+      transform: rotate(180deg); /* Rotate the icon when collapsed */
+    }
+
+    /* Custom styles for the topics */
+    .topic-item {
+      display: flex; /* Use flexbox to align items */
+      align-items: center; /* Align items vertically */
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+
+    .topic-item a {
+      color: #fff; /* Change the color of the topic links */
+    }
+
+

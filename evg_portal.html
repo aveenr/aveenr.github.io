@@ -11,10 +11,25 @@
       background-image: url('https://images.pexels.com/photos/4631033/pexels-photo-4631033.jpeg');
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: center top; /* Center horizontally and align to top vertically */
       color: #ffffff; /* White text */
       font-family: 'Noto Sans', sans-serif; /* Use Google's Noto Sans font */
     }
+    
+    /* Media query for smaller screens (480px to 767px) */
+    @media (max-width: 767px) {
+      body {
+        background-size: 200%; /* Zoom in by 100% on screens between 480px and 767px */
+      }
+    }
+    
+    /* Media query for even smaller screens (less than 480px) */
+    @media (max-width: 479px) {
+      body {
+        background-size: 250%; /* Zoom in by 150% on screens below 480px */
+      }
+    }
+
     .navbar {
       background-color: transparent !important; /* Transparent navbar */
       color: #E5C7B3; /* White text for sections */

@@ -1,0 +1,32 @@
+[
+  {
+    "author": "John Doe",
+    "news": "T45 New juvenile Devil firefish introduce.",
+    "is_completed": 0,
+    "date": "2024-03-26"
+  },
+  {
+    "author": "lothat",
+    "news": "Another news item.",
+    "is_completed": 1,
+    "date": "2024-03-22"
+  },
+  {
+    "author": "Tommy",
+    "news": "Sign the register",
+    "is_completed": 0,
+    "date": "2024-03-29"
+  },
+  {
+    "author": "Breadson",
+    "news": "Buy bread",
+    "is_completed": 0,
+    "date": "2024-03-26"
+  },
+  {
+    "author": "Mario",
+    "news": "17 x Oxeye tarpon were moved to Quarantine.",
+    "is_completed": 0,
+    "date": "2024-02-26"
+  }
+]

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta image_source="https://images.pexels.com/photos/6510292/pexels-photo-6510292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+  <title>News</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <style>
+    /* Style for the date in the bottom right of each section */
+    .news-date {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body class="text-center"> <!-- Align all text horizontally center -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="news.html">News</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="calendar.html">Calendar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="search.html">Search</a>
+        </li>
+        <!-- Add more sections as needed -->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5" id="newsContainer">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  fetch('news.json') // Replace 'news.json' with the actual path to your JSON file
+    .then(response => response.json())
+    .then(data => {
+      const filteredData = data.filter(newsItem => newsItem.is_completed === 0); // Filter by is_completed
+      filteredData.sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date (most recent to oldest)
+
+      const newsContainer = document.getElementById('newsContainer');
+      filteredData.forEach(newsItem => {
+        const section = document.createElement('section');
+        const paragraph = document.createElement('p');
+        const authorDateSpan = document.createElement('span'); // Create a span for author and date
+        const dateObj = new Date(newsItem.date);
+        const formattedDate = dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+        paragraph.textContent = newsItem.news;
+        authorDateSpan.textContent = `${newsItem.author} - ${formattedDate}`; // Combine author and date
+        authorDateSpan.classList.add('news-author-date'); // Add class for author and date span
+
+        section.appendChild(paragraph);
+        section.appendChild(authorDateSpan); // Append the author and date span to the section
+        section.classList.add('position-relative'); // Add position-relative class to the section for absolute positioning of the date span
+        newsContainer.appendChild(section);
+
+        const hr = document.createElement('hr'); // Add <hr> between sections
+        newsContainer.appendChild(hr);
+      });
+    })
+    .catch(error => console.error('Error fetching news:', error));
+</script>
+</body>
+</html>

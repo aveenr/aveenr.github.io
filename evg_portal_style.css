@@ -1,0 +1,85 @@
+    body {
+      background-image: url('bg.jpeg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      color: #e3dbd6;
+      font-family: 'Noto Sans', sans-serif; /* Use Google's Noto Sans font */
+      background-color: rgba(0, 0, 0, 0.9); /* Black color with 50% opacity */
+    }
+
+    /* Media query for smaller screens (480px to 767px) */
+    @media (max-width: 768px) {
+      body {
+        background-size: 125%; /* Zoom in by 100% on screens between 480px and 767px */
+      }
+    }
+
+    /* Media query for even smaller screens (less than 480px) */
+    @media (max-width: 510px) {
+      body {
+        background-size: 200%; /* Zoom in by 150% on screens below 480px */
+      }
+    }
+
+
+    .navbar {
+      background-color: transparent !important; /* Transparent navbar */
+      /* color: #E5C7B3; */
+    }
+    .navbar-brand {
+      font-size: 24px;
+      font-weight: bold;
+      padding: 10px;
+    }
+    .navbar-nav .nav-link {
+      font-size: 18px;
+      /* color: #E5C7B3; /* White text for sections */
+    }
+
+    section {
+      background-color: rgba(52, 73, 94, 0.8); /* Dark blue semi-transparent background for sections */
+      background-color: rgba(32, 48, 64, 0.7);
+      background-color: rgba(19, 39, 59, 0.7);
+      color: #E5C7B3; /* White text for sections */
+      color: #e3dbd6;
+      padding: 20px;
+<!--       margin-bottom: 20px; -->
+      margin: 20px;
+      border-radius: 5px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      box-shadow: 12px 9px 10px 5px rgba(0, 0, 0, 0.5)
+    }
+    section:hover {
+      background-color: #2F5677;
+      background-color: rgba(47, 86, 119, 0.7);
+      color: #E5C7B3; /* Off white */
+
+
+    }
+
+
+    section h2 {
+      margin-bottom: 10px;
+    }
+    .btn-primary {
+      background-color: #3498db; /* Complementary color for buttons */
+      border-color: #3498db; /* Border color for buttons */
+    }
+    .btn-primary:hover {
+      background-color: #2980b9; /* Darker shade on hover */
+      border-color: #2980b9;
+    }
+
+    .news-author-date {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-size: 12px;
+      color: #666;
+      padding: 10px;
+    }
+
+    a {
+      text-decoration: none;
+    }

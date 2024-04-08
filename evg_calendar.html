@@ -279,8 +279,18 @@
           const eventNameCell = document.createElement('td');
           eventNameCell.textContent = event.event;
 
+          // const eventDateCell = document.createElement('td');
+          // eventDateCell.textContent = event.date;
+
+          // ---
+          
           const eventDateCell = document.createElement('td');
-          eventDateCell.textContent = event.date;
+          // Format the date to dd-mmm format
+          const options = { day: '2-digit', month: 'short' };
+          const formattedDate = eventDate.toLocaleDateString('en-US', options);
+          eventDateCell.textContent = formattedDate;
+
+          // ---
 
           row.appendChild(eventNameCell);
           row.appendChild(eventDateCell);

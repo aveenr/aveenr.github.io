@@ -113,14 +113,37 @@
         background-position: center -260px !important; /* Adjust background position for screens between 720px and 1080px */
       }
     }
+    .tab-pane {
+      background: transparent;
+    }
     table {
       background-color: rgba(19, 39, 59, 0.7);
     }
-    .table, .table-striped, .table-dark {
+    h3 {
+      color: #E5C7B3;
+      background: transparent;
+    }
+    th {
+      color: #E5C7B3;
       background-color: rgba(19, 39, 59, 0.7);
     }
     .tab-content {
       background-color: rgba(19, 39, 59, 0.7);
+    }
+    .tab-pane {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    .fade_bg {
+      background-color: rgba(19, 9, 9, 0.5);
+    }
+
+    .even-row {
+      color: #D7C6B6;
+      background-color: rgba(40, 67, 93, 0.5);
+    }
+    .odd-row {
+      color: #E5C7B3;
+      background-color: rgba(19, 9, 9, 0.5);
     }
   </style>
 
@@ -244,7 +267,8 @@
 
     eventsContainer.innerHTML = ''; // Clear existing events
 
-    events.forEach(event => {
+    events.forEach((event, index) => { // Add index parameter to forEach
+    // events.forEach(event => {
       if (event && event.event && event.date) {
         const eventDate = new Date(event.date);
 
@@ -262,6 +286,14 @@
           row.appendChild(eventDateCell);
 
           row.addEventListener('click', () => displayEventDetails(event));
+
+          // Apply alternating classes
+          if (index % 2 === 0) {
+              row.classList.add('even-row');
+          } else {
+              row.classList.add('odd-row');
+          }
+
 
           eventsContainer.appendChild(row);
         }
